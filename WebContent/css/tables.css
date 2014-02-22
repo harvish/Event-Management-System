@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+
+td.valfields
+	{
+	border-style:none;
+	color: red;
+	font-variant: small-caps;
+	font-size: small;
+
+	
+	}
+tr.hiddenChecks{
+	border:hidden;
+	border-left: none;
+	border-right:none;
+	};

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+	<html ng-app="eventApp">
+	<head>
+	  <link rel="stylesheet" type="text/css" href="css/ui-lightness/jquery-ui.min.css">
+	  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+	  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css" />
+	  <style>
+	  .error {
+		 display:block;
+		 color: red;
+		 font-size: 10px;
+		}
+	  </style>
+	  <script src="js/jquery.js"></script>
+	  <!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js">
+		<script src="https://raw.github.com/scottjehl/Respond/master/dest/respond.min.js">
+		</script>
+		<![endif]-->
+	  <script src="js/jquery-ui-custom.js"></script>
+	  <script src="js/bootstrap/bootstrap.min.js"></script>
+	  <script src="js/angularjs/angular.min.js"></script>
+	  <script src="js/angularjs/angular-route.min.js"></script>
+	  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.1/angular-animate.min.js"></script>
+    
+	  <script>
+	  var loadgif= function(){
+		$("#loading").show();  
+	  };
+	  var unloadgif= function(){
+		$("#loading").hide();  
+	  };
+	  $(document).ready(function(){
+		  unloadgif();
+		  $('.carousel').carousel({
+		        interval: 3000
+		    });
+
+		    $('.carousel').carousel('cycle');
+	  })
+	  </script>
+	  <script src="js/script.js"></script>
+	  <style>
+	  .slide {
+  position: relative;
+}
+ 
+.slide.ng-leave, .slide.ng-enter {
+  -webkit-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -moz-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -ms-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  -o-transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  transition: all cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.5s;
+  
+  position:absolute;
+  left: 0;
+  right: 0;
+}
+ 
+.slide.left.ng-enter,
+.slide.right.ng-leave.ng-leave-active {
+  left: 100%;
+  opacity: 0;
+}
+ 
+.slide.left.ng-enter.ng-enter-active,
+.slide.left.ng-leave,
+.slide.right.ng-enter.ng-enter-active,
+.slide.right.ng-leave {
+  left:0;
+  opacity: 1;
+}
+ 
+.slide.left.ng-leave.ng-leave-active,
+.slide.right.ng-enter {
+  left: -100%;
+  opacity: 0;
+}
+ #myCarousel {
+ 	z-index: -10;
+ 	position:absolute;
+ 	left:0px;
+ 	top:0px;
+ 	width:100%;
+ 	height:700px;
+ 	opacity :0.8;
+ }
+ </style>
+	</head>
+	<body ng-controller="mainController">
+
+		<!-- HEADER AND NAVBAR -->
+		<header>
+		<nav class="navbar navbar-inverse">
+		<div class="container">
+			<div class="navbar-header">
+			<a class="navbar-brand" href="#">Event Management System</a>
+			</div>
+			<ul class="nav navbar-nav navbar-right">
+				<li id="2" ng-class="{active:isActive('/register')}"><a href="#register"><i class="fa"></i> Register Customer</a></li>
+				<li id="3" ng-class="{active:isActive('/event')}"><a href="#event"><i class="fa"></i> Event Booking</a></li>
+				<li id="4" ng-class="{active:isActive('/facility')}"><a href="#facility"><i class="fa"></i> Facility Booking</a></li>
+				<li id="5" ng-class="{active:isActive('/vendor')}"><a href="#vendor"><i class="fa"></i> Vendor Management</a></li>
+				<li id="6" ng-class="{active:isActive('/report')}"><a href="#report"><i class="fa"></i> Report</a></li>
+				<li id="7"><a href="logout.jsp"><i class="fa"></i> Logout</a></li>
+			</ul>
+		</div>
+		</nav>
+
+		</header>
+		
+		<!-- Carousel -->
+		<div id="myCarousel" class="carousel slide" > 
+
+		<div class="carousel-inner" >
+		
+		<div class="active item"><img src="images/img1.jpg" alt="Partners" style="height: 900px;width: 100%" /></div>
+		
+		<div class="item"><img src="images/screen-shot-2013-08-30-at-9.41.13-am.jpg" alt="Airtel" style="height: 900px;width: 100%"/></div>
+		
+		<div class="item"><img src="images/slide2.jpg" alt="TNEB" style="height: 900px;width: 100%"/></div>
+		
+		<div class="item"><img src="images/img2.jpg" alt="Reliance" style="height: 900px;width: 100%" /></div>
+		
+		</div>
+		
+		<a class="carousel-control left" data-slide="prev"> &lt;</a>
+		
+		<a class="carousel-control right" data-slide="next">&gt;</a>
+		</div>
+
+		<!-- Loading image -->		 
+		<div id="loading"  style="position:absolute;margin-top:100px;left:50%;"><img src="img/loading_icon.gif"></div>
+		
+		
+		<!-- MAIN CONTENT AND INJECTED VIEWS -->
+		<div id="main">
+			
+			<!-- angular templating -->
+			<!-- this is where content will be injected -->
+			<div ng-view  ng-class="{slide: true, left: isDownwards, right: !isDownwards}">
+			</div>
+		</div>
+	</body>
+	</html>
